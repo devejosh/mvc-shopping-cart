@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Iphone",
+        "price": "60,000",
+        "manufacturer": "Apple"
+    },
+
+    {
+        "name": "Pixel 6",
+        "price": "60,000",
+        "manufacturer": "Google"
+    }
+]
