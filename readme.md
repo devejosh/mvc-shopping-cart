@@ -32,7 +32,7 @@ pip install Flask
 ```
 
 ## Project structure
-
+```
 mvc-shopping-cart/
    ├── app.py
    ├── templates/
@@ -52,3 +52,4 @@ mvc-shopping-cart/
    ├── data/
    │   ├── products.json
    └── venv/ (Your virtual environment)
+```
