@@ -6,12 +6,8 @@ This is a simple e-commerce website built with Flask that features product listi
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
-- [Usage](#usage)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -33,3 +29,26 @@ Before running this project, make sure you have the following prerequisites:
 
 ```bash
 pip install Flask
+```
+
+## Project structure
+
+mvc-shopping-cart/
+   ├── app.py
+   ├── templates/
+   │   ├── index.html
+   │   ├── cart.html
+   │   └── product.html
+   ├── static/
+   │   ├── components/
+   │   │   ├── header.html
+   │   │   └── footer.html
+   │   ├── css/
+   │   │   └── style.css
+   │   ├── images/
+   │   │   └── (product images)
+   │   └── js/
+   │       └── script.js
+   ├── data/
+   │   ├── products.json
+   └── venv/ (Your virtual environment)

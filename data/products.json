@@ -2,9 +2,10 @@
     {
         "uuid" : "1",
         "name": "Apple iPhone",
+        "image" : "../static/images/products/mobiles/iphone.jpg",
         "price": "60,000",
         "manufacturer": "Apple",
-        "description": "A high-quality smartphone from Apple.",
+        "description": "Elevate your mobile experience with the iPhone, featuring cutting-edge technology, exceptional camera quality, ample storage, and the latest iOS. A symbol of innovation in the smartphone world.",
         "specifications": {
             "Screen Size": "6.1 inches",
             "Camera": "Dual 12 MP",
@@ -15,9 +16,10 @@
     {
         "uuid" : "2",
         "name": "Pixel 6",
+        "image" : "../static/images/products/mobiles/pixel7.jpg",
         "price": "60,000",
         "manufacturer": "Google",
-        "description": "The latest Google Pixel phone with great features.",
+        "description": "Elevate your mobile experience with the Google Pixel 60,000, boasting a 6.4-inch screen, dual 50 MP cameras, 128 GB storage, and Android 12. The pinnacle of smartphone innovation.",
         "specifications": {
             "Screen Size": "6.4 inches",
             "Camera": "Dual 50 MP",
@@ -27,10 +29,11 @@
     },
     {
         "uuid" : "3",
-        "name" : "Asus Laptop",
-        "price": "40,000",
+        "name" : "ASUS ROG Strix 15",
+        "image" : "../static/images/products/laptops/asus-rog.png",
+        "price": "75,000",
         "manufacturer" : "Asus",
-        "description": "A powerful laptop from Asus for your computing needs.",
+        "description": "Elevate your gaming with the ASUS ROG Strix 15 laptop - unmatched performance, high-refresh display, and gaming power in a portable package. The ultimate gaming innovation.",
         "specifications": {
             "Screen Size": "15.6 inches",
             "CPU": "Intel Core i5",
