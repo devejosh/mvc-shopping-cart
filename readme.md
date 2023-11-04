@@ -7,7 +7,6 @@ This is a simple e-commerce website built with Flask that features product listi
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Project Structure](#project-structure)
-- [Deployment](#deployment)
 
 ## Introduction
 
