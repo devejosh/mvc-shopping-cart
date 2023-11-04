@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,39 +8,43 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 
-    <title>E-Commerce Products</title>
+<title>E-Commerce Products</title>
 </head>
+
 <body>
     <header>
-        <h1>Modern E-Commerce Products</h1>
+        <h1>Dazspace</h1>
     </header>
 
     <div class="container" id="product-container">
-        <!-- Product 1 -->
+        {% for product in data %}
         <div class="product">
-            <img src="https://images.unsplash.com/photo-1581061204959-6eb0f005f462" alt="Product 1">
-            <h2>Running Shoes</h2>
-            <p class="description">High-performance running shoes for all terrains.</p>
-            <p class="price">$69.99</p>
+            <h2>{{ product.name }}</h2>
+            <p class="description">{{ product.description }}</p>
+            <p class="price">{{ product.price }}</p>
+
+            <!--Specifictions-->
+            <div class="specificatons">
+                <h4><u>Specifications</u></h4>
+                <ul>
+                    {% for key, value in product.specifications.items() %}
+                        <li><strong>{{key}} : {{value}}</strong></li>
+                    {% endfor %}
+                </ul>
+            </div>
             <button class="add-to-cart">Add to Cart</button>
         </div>
+        {% endfor %}
+    </div>
 
-        <!-- Product 2 -->
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1542291026-e30e1b49a572" alt="Product 2">
-            <h2>Casual Sneakers</h2>
-            <p class="description">Stylish and comfortable sneakers for everyday wear.</p>
-            <p class="price">$49.99</p>
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
-
-        <!-- Add more product sections as needed -->
+    <!-- Add more product sections as needed -->
     </div>
 
     <footer>
-        &copy; 2023 Your Company
+        &copy; Devendra Joshi 2023
     </footer>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
