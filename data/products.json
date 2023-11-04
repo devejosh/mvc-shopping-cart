@@ -1,13 +1,41 @@
 [
     {
-        "name": "Iphone",
+        "uuid" : "1",
+        "name": "Apple iPhone",
         "price": "60,000",
-        "manufacturer": "Apple"
+        "manufacturer": "Apple",
+        "description": "A high-quality smartphone from Apple.",
+        "specifications": {
+            "Screen Size": "6.1 inches",
+            "Camera": "Dual 12 MP",
+            "Storage": "128 GB",
+            "OS": "iOS 15"
+        }
     },
-
     {
+        "uuid" : "2",
         "name": "Pixel 6",
         "price": "60,000",
-        "manufacturer": "Google"
+        "manufacturer": "Google",
+        "description": "The latest Google Pixel phone with great features.",
+        "specifications": {
+            "Screen Size": "6.4 inches",
+            "Camera": "Dual 50 MP",
+            "Storage": "128 GB",
+            "OS": "Android 12"
+        }
+    },
+    {
+        "uuid" : "3",
+        "name" : "Asus Laptop",
+        "price": "40,000",
+        "manufacturer" : "Asus",
+        "description": "A powerful laptop from Asus for your computing needs.",
+        "specifications": {
+            "Screen Size": "15.6 inches",
+            "CPU": "Intel Core i5",
+            "RAM": "8 GB",
+            "Storage": "512 GB SSD"
+        }
     }
 ]
