@@ -4,21 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- The CSS for browser normalization across vendors is taken from https://necolas.github.io/normalize.css/ -->
+
+
+    <!-- Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    
+    <!--Local styles-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </head>
 
-<title>E-Commerce Products</title>
+<title>Dazsace | Home</title>
 </head>
 
 <body>
     <header>
-        <h1>Dazspace</h1>
+        <h1>Dazspace 2.0 | Implementations on Python and flask</h1>
+        <section class="main-menu">
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">contact</a></li>
+                <li><a href="#">cart</a></li>
+                <li><a href="#">admin</a></li>
+            </ul>
+        </section>
     </header>
 
     <div class="container" id="product-container">
         {% for product in data %}
         <div class="product">
+            <img src="{{product.image}}" alt="{{product.name}}">
             <h2>{{ product.name }}</h2>
             <p class="description">{{ product.description }}</p>
             <p class="price">{{ product.price }}</p>
@@ -28,7 +50,7 @@
                 <h4><u>Specifications</u></h4>
                 <ul>
                     {% for key, value in product.specifications.items() %}
-                        <li><strong>{{key}} : {{value}}</strong></li>
+                    <li><strong>{{key}} : {{value}}</strong></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -36,15 +58,11 @@
         </div>
         {% endfor %}
     </div>
-
-    <!-- Add more product sections as needed -->
     </div>
 
     <footer>
         &copy; Devendra Joshi 2023
     </footer>
-
-    <script src="js/script.js"></script>
 </body>
 
 </html>
