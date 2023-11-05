@@ -13,8 +13,6 @@ header h1{
     text-transform: uppercase;
 }
 
-
-
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -138,7 +136,6 @@ footer {
     }
 }
 
-
 /* -- Shopping cart --*/
 .cart {
     width: 300px;
@@ -187,5 +184,54 @@ footer {
 }
 
 .checkout-button:hover {
+    background-color: #0056b3;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.form-container h2{
+    text-align: center;
+}
+/* Labels */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Input Fields */
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+/* Placeholder Text */
+::placeholder {
+    color: #999;
+}
+
+/* Buttons */
+.button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
     background-color: #0056b3;
 }
