@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact Us</title>
-</head>
-<body>
-    <h1>Contact Us</h1>
-    <p>Feel free to reach out to us using the form below:</p>
-
+{% extends 'layout.html' %}
+{% block content%}
+<div class="form-container">
+    <h2>Contact us </h2>
     <form method="POST">
         <!-- Contact form fields -->
         <label for="name">Name:</label>
@@ -20,5 +15,5 @@
 
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+</div>
+{% endblock %}

@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="container" id="product-container">
-    
+
     {% for product in data %}
     <div class="product">
         <img src="{{product.image}}" alt="{{product.name}}">
         <h2>{{ product.name }}</h2>
         <p class="description">{{ product.description }}</p>
-        <p class="price">Price : {{ product.price }}</p>
+        <p class="price">{{ product.price }}</p>
 
         <!--Specifictions-->
         <div class="specificatons">
@@ -20,8 +20,16 @@
                 {% endfor %}
             </ul>
         </div>
-        <button class="add-to-cart">Add to Cart</button>
+        <form action="/addtocart" method="post">
+            <input type="hidden" name="product" value="{{ product.name}}">
+            <input type="hidden" name="price" value="{{ product.price }}">
+            <input type="number" name="quantity" value="1">
+            <input type="hidden" name="image" value="{{ product.image }}">
+
+            <button class="add-to-cart">Add to cart</button>
+        </form>
     </div>
+
     {% endfor %}
 
 </div>
