@@ -1,17 +1,13 @@
-class Product:
-    def __init__(self, name, price):
-        """Initialize a product with a name and price."""
-        self.name = name
-        self.price = price
 
-class ShoppingCart:
+class shoppingcart:
+     
     def __init__(self):
         """Initialize an empty shopping cart."""
         self.items = []
 
-    def add_product(self, product, quantity):
+    def add_product(self, product, price, quantity, image):
         """Add a product to the shopping cart with a specified quantity."""
-        self.items.append({"product": product, "quantity": quantity})
+        self.items.append({"product": product, "quantity": quantity, "price":price, "image" : image})
 
     def remove_product(self, product):
         """Remove a product from the shopping cart."""
