@@ -1,3 +1,4 @@
+from flask import json
 
 class shoppingcart:
      
@@ -5,9 +6,14 @@ class shoppingcart:
         """Initialize an empty shopping cart."""
         self.items = []
 
-    def add_product(self, product, price, quantity, image):
+    def add_product(self, product_name, quantity, price, image):
         """Add a product to the shopping cart with a specified quantity."""
-        self.items.append({"product": product, "quantity": quantity, "price":price, "image" : image})
+        self.items.append({"product": product_name, "quantity": quantity, "price":price, "image" : image})
+        
+        # Serialize and write the updated cart items to cart.json
+        with open('data/cart.json', 'w') as cart_file:
+            json.dump(self.items, cart_file)
+        print(self.items)
 
     def remove_product(self, product):
         """Remove a product from the shopping cart."""
