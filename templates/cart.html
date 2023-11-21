@@ -13,12 +13,16 @@
                 <p>Quantity :{{item.quantity}}</p>
                 <p>Price : INR {{item.price}}</p>
             </div>
-            <button class="cart-buttons-add-remove" id="remove-from-cart-btn">Remove from Cart</button>
+            <form action="/remove-from-cart" method="post">
+                <input type="hidden" name="product" value="{{item.product}}">
+                <button class="cart-buttons-add-remove" id="remove-from-cart-btn">Remove from Cart</button>
+            </form>
+
         </li>
         {% endfor %}
     </ul>
     <div class="cart-total">
-        <p>Total</p>
+        <p>Total : {{finalttl}}</p>
         <button class="cart-buttons-add-remove" id="checkout-btn">Checkout</button>
     </div>
 </div>
