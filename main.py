@@ -30,14 +30,17 @@ def contact():
 
 
 @app.route('/cart')
-def cart():
-    try:   
-        with open('data/cart.json', 'r') as cartitems:
-            cart = json.load(cartitems)
-            total = my_cart.calculate_total()
-            return render_template('cart.html', data=cart, ct=total)
-    except:
-        return render_template('components/404.html')
+def cart():  
+        #check if my_cart is empty. 
+        if my_cart.cart_empty() == True:
+            return render_template('components/emptycart.html')
+        else:
+                cartdata = my_cart.items
+                total = my_cart.calculate_total() 
+                return render_template('cart.html', data=cartdata,  finalttl = total)
+        
+
+
 
 @app.route('/addtocart', methods=['GET', 'POST'])
 def addtocart():
@@ -52,7 +55,19 @@ def addtocart():
             my_cart.add_product(product_name, quantity, price, image)
     return redirect(url_for('home'))
 
+@app.route('/remove-from-cart', methods=['POST'])
+def removefromcart():
+    if request.method == 'POST':
+        #process the request and remove the data from the cart array based on the prduct name
+        try:
+            product = request.form.get('product')
+            my_cart.remove_product(product)
+        except:
+            print("error in logic")
+    
+    return redirect(url_for('cart'))
 
+# Helper methods
 def safe_float(value):
     try:
         # Remove commas and convert to float
