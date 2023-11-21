@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block content %}
+<style>
+    a {
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .container
+    {
+        display: block;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <h1>The cart is empty.</h1>
+    <p>Please add items to the cart.</p>
+    <p>Return to <a href="/">Home</a></p>
+</div>
+{% endblock %}
