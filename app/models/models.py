@@ -6,6 +6,16 @@ class shoppingcart:
         """Initialize an empty shopping cart."""
         self.items = []
 
+
+    def cart_empty(self):
+        """Check if the cart array is empty"""
+        if len(self.items) == 0:
+            return True
+        else:
+            return False
+
+
+
     def add_product(self, product_name, quantity, price, image):
         """Add a product to the shopping cart with a specified quantity."""
         self.items.append({"product": product_name, "quantity": quantity, "price":price, "image" : image})
@@ -13,7 +23,6 @@ class shoppingcart:
         # Serialize and write the updated cart items to cart.json
         with open('data/cart.json', 'w') as cart_file:
             json.dump(self.items, cart_file)
-        print(self.items)
 
     def remove_product(self, product):
         """Remove a product from the shopping cart."""
@@ -21,11 +30,13 @@ class shoppingcart:
             if item["product"] == product:
                 self.items.remove(item)
                 return True  # Item removed
-        return False  # Item not found in the cart
+            else:
+                print ("item not in the cart. Please add it first")
+        
 
     def calculate_total(self):
         """Calculate the total cost of all items in the shopping cart."""
         total = 0
         for item in self.items:
-            total = total + item["product"].price * item["quantity"]
+            total = total + item["price"] * item["quantity"]
         return total
