@@ -1,23 +1,24 @@
+#Imports
 from flask import Flask, render_template, request, redirect, url_for, json
+from config import Config
 from app.models.models import shoppingcart
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-# Instantiate an empty shopping cart at
-my_cart = shoppingcart()
+# Instantiate an empty shopping cart at the start
+my_cart = shoppingcart(app.config)
 
 # Custom error page for 404 (page not found errors)
-
-
 @app.errorhandler(404)
 def pagenotfound(error):
-    return render_template('components/404.html'), 404
+    return render_template(app.config['ERROR_404']), 404
 
 
 @app.route('/')
 def home():
     try:
-        with open('data/products.json', 'r') as products:
+        with open(app.config['PRODUCTS_FILE'], 'r') as products:
             data = json.load(products)
         return render_template('index.html', data=data)
     except FileNotFoundError:
@@ -33,13 +34,12 @@ def contact():
 def cart():  
         #check if my_cart is empty. 
         if my_cart.cart_empty() == True:
-            return render_template('components/emptycart.html')
+            return render_template(app.config['EMPTY_CART'])
         else:
                 cartdata = my_cart.items
                 total = my_cart.calculate_total() 
                 return render_template('cart.html', data=cartdata,  finalttl = total)
         
-
 
 
 @app.route('/addtocart', methods=['GET', 'POST'])
@@ -55,6 +55,8 @@ def addtocart():
             my_cart.add_product(product_name, quantity, price, image)
     return redirect(url_for('home'))
 
+
+
 @app.route('/remove-from-cart', methods=['POST'])
 def removefromcart():
     if request.method == 'POST':
@@ -66,6 +68,7 @@ def removefromcart():
             print("error in logic")
     
     return redirect(url_for('cart'))
+
 
 # Helper methods
 def safe_float(value):
