@@ -17,7 +17,6 @@ class shoppingcart:
             return False
 
 
-
     def add_product(self, product_name, quantity, price, image):
         """Add a product to the shopping cart with a specified quantity."""
         self.items.append({"product": product_name, "quantity": quantity, "price":price, "image" : image})
@@ -25,6 +24,7 @@ class shoppingcart:
         # Serialize and write the updated cart items to cart.json
         with open(self.config['WRITE_TO_CART'], 'w') as cart_file:
             json.dump(self.items, cart_file)
+
 
     def remove_product(self, product):
         """Remove a product from the shopping cart."""
