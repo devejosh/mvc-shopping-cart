@@ -1,13 +1,18 @@
-#Imports
+#default imports
 from flask import Flask, render_template, request, redirect, url_for, json
+
+#custom imports
 from config import Config
+from utils import helper
 from app.models.models import shoppingcart
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
+
 # Instantiate an empty shopping cart at the start
 my_cart = shoppingcart(app.config)
+helper_methods = helper()
 
 # Custom error page for 404 (page not found errors)
 @app.errorhandler(404)
@@ -47,8 +52,9 @@ def addtocart():
     if request.method == 'POST':
         # Process the POST request data
         product_name = request.form.get('product')
-        price = safe_float(request.form.get('price'))
-        quantity = safe_int(request.form.get('quantity'))
+       
+        price = helper_methods.safe_float(request.form.get('price'))
+        quantity = helper_methods.safe_int(request.form.get('quantity'))
         image = request.form.get('image')
 
         if price is not None and quantity is not None:
@@ -64,29 +70,9 @@ def removefromcart():
         try:
             product = request.form.get('product')
             my_cart.remove_product(product)
-        except:
-            print("error in logic")
-    
+        except Exception as e:
+            print(f"Error removing product from the cart : {str(e)}")
     return redirect(url_for('cart'))
-
-
-# Helper methods
-def safe_float(value):
-    try:
-        # Remove commas and convert to float
-        return float(value.replace(',', ''))
-    except ValueError:
-        # Handle invalid float values
-        return None
-
-
-def safe_int(value):
-    try:
-        # Remove commas and convert to integer
-        return int(value.replace(',', ''))
-    except ValueError:
-        # Handle invalid integer values
-        return None
 
 
 
