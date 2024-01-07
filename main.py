@@ -27,39 +27,63 @@ def home():
             data = json.load(products)
         return render_template('index.html', data=data)
     except FileNotFoundError:
-        return render_template('404.html')
+        return render_template(app.config('ERROR_404'))
 
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    try:
+        return render_template('contact.html')
+    except:
+        return render_template("404.html")
+
 
 
 @app.route('/cart')
-def cart():  
-        #check if my_cart is empty. 
-        if my_cart.cart_empty() == True:
-            return render_template(app.config['EMPTY_CART'])
-        else:
-                cartdata = my_cart.items
-                total = my_cart.calculate_total() 
-                return render_template('cart.html', data=cartdata,  finalttl = total)
+def cart(): 
+        try:
+            #check if my_cart is empty. 
+            if my_cart.cart_empty() == True:
+                return render_template(app.config['EMPTY_CART'])
+            else:
+                    cartdata = my_cart.items
+                    total = my_cart.calculate_total() 
+                    return render_template('cart.html', data=cartdata,  finalttl = total)
+        except:
+                return render_template(app.config['ERROR_404'])
         
 
 
 @app.route('/addtocart', methods=['GET', 'POST'])
 def addtocart():
-    if request.method == 'POST':
-        # Process the POST request data
-        product_name = request.form.get('product')
-       
-        price = helper_methods.safe_float(request.form.get('price'))
-        quantity = helper_methods.safe_int(request.form.get('quantity'))
-        image = request.form.get('image')
+        try:  
+            if request.method == 'POST':
+                # Process the POST request data
+                product_name = request.form.get('product')
+            
+                price = helper_methods.safe_float(request.form.get('price'))
+                quantity = helper_methods.safe_int(request.form.get('quantity'))
+                image = request.form.get('image')
 
-        if price is not None and quantity is not None:
-            my_cart.add_product(product_name, quantity, price, image)
-    return redirect(url_for('home'))
+            #Trying to check if the data returned from the form has all the required variables.
+            #EG : product_name & price and quantity and product image denoted by "image" in the 'if not' statement below
+            try:
+                if not (product_name and price and quantity and image): 
+                    return render_template(app.config['FORM_ERROR'])
+            except:
+                return render_template(app.config('ERROR_404'))
+            
+
+            #Below, after checking that all the required variables are in place, we check that the price and quantity are none 'none'. They have to have have a value in order fr the 'add_product' method below to process them. 
+
+            if price is not None and quantity is not None:
+                my_cart.add_product(product_name, quantity, price, image)
+
+            
+            return redirect(url_for('home'))
+        
+        except:
+             return render_template(app.config('ERROR_404'))
 
 
 
