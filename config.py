@@ -9,4 +9,7 @@ class Config:
     WRITE_TO_CART = os.path.join(BASE_DIR, 'data/cart.json')
     EMPTY_CART = 'components/emptycart.html'
     ERROR_404 = 'components/404.html'
+
+    #FORM
+    FORM_ERROR = 'components/error handler/error.html'
     
