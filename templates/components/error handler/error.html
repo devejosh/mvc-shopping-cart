@@ -1,5 +1,26 @@
 {% extends 'layout.html' %}
 
 {%block content%}
-    <p> Issues with the data being processed. Please log out and close the application. A log has been created for this case.</p>
+<style>
+    a {
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .container
+    {
+        display: block;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <h1>Error | Check the details below</h1>
+    <p>{{ data }}</p>
+    <p>Return to <a href="/">Home</a></p>
+</div>
 {% endblock %}

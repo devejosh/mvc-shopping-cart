@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, json
 
 #custom imports
 from config import Config
-from utils import helper
+from exception_handler import exceptions
 from app.models.models import shoppingcart
 
 app = Flask(__name__)
@@ -12,7 +12,8 @@ app.config.from_object(Config)
 
 # Instantiate an empty shopping cart at the start
 my_cart = shoppingcart(app.config)
-helper_methods = helper()
+checkexceptions = exceptions()
+
 
 # Custom error page for 404 (page not found errors)
 @app.errorhandler(404)
@@ -58,38 +59,35 @@ def cart():
 def addtocart():
         try:  
             if request.method == 'POST':
-                # Process the POST request data
-                product_name = request.form.get('product')
-            
-                price = helper_methods.safe_float(request.form.get('price'))
-                quantity = helper_methods.safe_int(request.form.get('quantity'))
-                image = request.form.get('image')
+                
+                #Check data for exceptions
+                error, price_type, quantity_type = checkexceptions.checkdata(request.form.get('product_name'), request.form.get('price'), request.form.get('quantity'), request.form.get('product_image'))
+              # check if the checkdata method retuned an error
+                if error:
+                   return render_template(app.config['INVALID_INPUT'], data=error, price_type=price_type, quantity_type=quantity_type)
+                else:
+                    if error is None:
+                        print("We are adding some data to the cart now")
+                        #Store data from the form in variables
+                        product_name = request.form.get('product_name')
+                        price = request.form.get('price')
+                        quantity = request.form.get('quantity')
+                        product_image = request.form.get('product_image')
+                        
+                        #Call the add product method from the shopping cart class to add the product to cart.
+                        my_cart.add_product(product_name, quantity, price, product_image)
 
-            #Trying to check if the data returned from the form has all the required variables.
-            #EG : product_name & price and quantity and product image denoted by "image" in the 'if not' statement below
-            try:
-                if not (product_name and price and quantity and image): 
-                    return render_template(app.config['FORM_ERROR'])
-            except:
-                return render_template(app.config('ERROR_404'))
-            
-
-            #Below, after checking that all the required variables are in place, we check that the price and quantity are none 'none'. They have to have have a value in order fr the 'add_product' method below to process them. 
-
-            if price is not None and quantity is not None:
-                my_cart.add_product(product_name, quantity, price, image)
-
-            
-            return redirect(url_for('home'))
-        
+                        return(render_template('index.html'))
+            else:
+                 print("Issue with the code. We are checking.")
         except:
-             return render_template(app.config('ERROR_404'))
-
+             return render_template(app.config['ERROR_404'], data="Exception was generated here")
 
 
 @app.route('/remove-from-cart', methods=['POST'])
 def removefromcart():
     if request.method == 'POST':
+        
         #process the request and remove the data from the cart array based on the prduct name
         try:
             product = request.form.get('product')
@@ -97,7 +95,6 @@ def removefromcart():
         except Exception as e:
             print(f"Error removing product from the cart : {str(e)}")
     return redirect(url_for('cart'))
-
 
 
 if __name__ == '__main__':

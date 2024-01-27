@@ -12,4 +12,7 @@ class Config:
 
     #FORM
     FORM_ERROR = 'components/error handler/error.html'
+
+    #Input sanitization when the form is processed.
+    INVALID_INPUT = 'components/error handler/error.html'
     
