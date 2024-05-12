@@ -23,7 +23,7 @@
         <form action="/addtocart" method="post">
             <input type="hidden" name="product_name" value="{{ product.name}}">
             <input type="hidden" name="price" value="{{ product.price }}">
-            <input type="number" name="quantity">
+            <input type="number" name="quantity" value="1">
             <input type="hidden" name="product_image" value="{{ product.image }}">
 
             <button class="cart-buttons-add-remove">Add to cart</button>
