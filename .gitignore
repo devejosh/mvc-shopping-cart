@@ -6,3 +6,4 @@ requirements.txt
 app/models/__pycache__/
 logs/
 errors.log
+.env
