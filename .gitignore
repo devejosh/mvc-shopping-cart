@@ -1,0 +1,5 @@
+__pyacache__/
+app/__pyacache__
+data/cart.json
+dockerfile  
+requirements.txt
