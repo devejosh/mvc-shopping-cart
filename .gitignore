@@ -1,5 +1,5 @@
-__pyacache__/
-app/__pyacache__
+__pycache__/
+app/__pycache__
 data/cart.json
 dockerfile  
 requirements.txt
