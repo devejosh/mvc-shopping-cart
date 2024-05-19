@@ -1,6 +1,7 @@
 #default imports
 from flask import Flask, render_template, request, redirect, url_for, json
 import traceback
+import logging
 
 #custom imports
 from config import Config
@@ -11,6 +12,8 @@ from utils import helper
 app = Flask(__name__)
 app.config.from_object(Config)
 
+# Setup logging
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 # Instantiate an empty shopping cart at the start
 my_cart = shoppingcart(app.config)
@@ -21,6 +24,7 @@ checkexceptions = exceptions()
 # Custom error page for 404 (page not found errors)
 @app.errorhandler(404)
 def pagenotfound(error):
+    app.logger.error(f'Page not found: {request.path}, error: {error}')
     return render_template(app.config['ERROR_404']), 404
 
 
@@ -111,6 +115,12 @@ def removefromcart():
         except Exception as e:
             print(f"Error removing product from the cart : {str(e)}")
     return redirect(url_for('cart'))
+
+
+@app.errorhandler(Exception)
+def handle_exception(error):
+    app.logger.error(f'Unhandled exception: {error}')
+    return render_template('error.html'), 500
 
 
 if __name__ == '__main__':
