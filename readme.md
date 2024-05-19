@@ -77,3 +77,42 @@ Please ensure to update tests as appropriate and adhere to the existing coding s
 ---
 
 Thank you for your interest in our Flask shopping cart project! We look forward to your contributions and hope you find this project useful for your learning and development.
+
+## Planned directory structure 
+flask-shopping-cart/
+├── app/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── controllers/
+│   │   ├── __init__.py
+│   │   ├── home.py
+│   │   ├── cart.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── shoppingcart.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── cart_service.py
+│   ├── static/
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── images/
+│   ├── templates/
+│   │   ├── layout/
+│   │   ├── products/
+│   │   ├── cart/
+│   ├── tests/
+│   │   ├── __init__.py
+│   │   ├── test_cart.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── helper.py
+├── data/
+│   ├── products.json
+├── docs/
+├── migrations/
+├── scripts/
+├── requirements.txt
+├── .gitignore
+├── README.md
+└── main.py
