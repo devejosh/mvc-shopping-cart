@@ -3,3 +3,4 @@ app/__pyacache__
 data/cart.json
 dockerfile  
 requirements.txt
+app/models/__pycache__/
