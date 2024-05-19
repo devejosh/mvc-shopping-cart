@@ -79,6 +79,7 @@ Please ensure to update tests as appropriate and adhere to the existing coding s
 Thank you for your interest in our Flask shopping cart project! We look forward to your contributions and hope you find this project useful for your learning and development.
 
 ## Planned directory structure 
+```bash
 flask-shopping-cart/
 ├── app/
 │   ├── __init__.py
@@ -116,3 +117,4 @@ flask-shopping-cart/
 ├── .gitignore
 ├── README.md
 └── main.py
+```
