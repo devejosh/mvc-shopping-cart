@@ -5,5 +5,5 @@ dockerfile
 requirements.txt
 app/models/__pycache__/
 logs/
-errors.log
+error.log
 .env
