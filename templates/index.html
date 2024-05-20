@@ -20,7 +20,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <form action="/addtocart" method="post">
+        <form action="/add-to-cart" method="post">
             <input type="hidden" name="product_name" value="{{ product.name}}">
             <input type="hidden" name="price" value="{{ product.price }}">
             <input type="number" name="quantity" value="1">
