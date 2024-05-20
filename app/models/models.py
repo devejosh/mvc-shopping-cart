@@ -3,10 +3,10 @@ from config import Config
 
 class shoppingcart:
      
-    def __init__(self, config):
+    def __init__(self):
         """Initialize an empty shopping cart."""
         self.items = []
-        self.config = config
+        self.config = Config()
 
 
     def cart_empty(self):
