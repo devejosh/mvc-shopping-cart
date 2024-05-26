@@ -4,7 +4,7 @@ from config import Config
 class shoppingcart:
      
     def __init__(self):
-        """Initialize an empty shopping cart."""
+        """Initialize an empty shopping cart and the configuration object"""
         self.items = []
         self.config = Config()
 
@@ -23,7 +23,7 @@ class shoppingcart:
         self.items.append({"product": product_name, "quantity": quantity, "price":price, "image" : image})
         
         # Serialize and write the updated cart items to cart.json
-        with open(self.config['WRITE_TO_CART'], 'w') as cart_file:
+        with open(self.config.WRITE_TO_CART, 'w') as cart_file:
             json.dump(self.items, cart_file)
             print (self.items)
 
