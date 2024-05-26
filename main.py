@@ -26,25 +26,25 @@ def home():
 @app.route('/contact')
 def contact():
     route = route_controller()
-    route.contact()
+    return route.contact()
 
 
 @app.route('/cart')
 def cart(): 
     cart = cart_controller()
-    cart.view_cart()
+    return cart.view_cart()
 
 
 @app.route('/add-to-cart' , methods=['POST'])
 def addtocart():
         cart = cart_controller()
-        cart.add_to_cart()
+        return cart.additemtocart()
 
 
-@app.route('/remove-from-cart')
+@app.route('/remove-from-cart', methods=['POST'])
 def removefromcart():
      cart = cart_controller()
-     cart.remove_from_cart()
+     return cart.remove_from_cart()
     
 
 
