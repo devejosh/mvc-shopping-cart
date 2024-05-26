@@ -1,24 +1,27 @@
-from flask import Blueprint, render_template 
+import traceback
 from app.services.cartservice import CartServices
 
 
 class cart_controller:
 
     try:
-        def view_cart():
+        def view_cart(self):
             cart = CartServices()
-            response = cart.check_cart()
-            return response
+            return cart.check_cart()
+           
     
-        def add_to_cart():
+        def additemtocart(self):
             cart = CartServices()
-            response = cart.additems()
-            return response
+            return cart.additems()
+            
     
-        def remove_from_cart():
+        def remove_from_cart(self):
             cart = CartServices()
-            response = cart.remove_from_cart()
-            return response
+            return cart.remove_from_cart()
+    
     except:
+        print("An error occurred:")
+        traceback.print_exc()
+
 
  
