@@ -27,7 +27,7 @@ config = Config()
 
 class CartServices:
     
-    def check_cart():
+    def check_cart(self):
         try:
             #check if my_cart is empty. 
             if cart.cart_empty() == True:
@@ -42,13 +42,12 @@ class CartServices:
                 traceback.print_exc()
                 return render_template(config.ERROR_404)
         
-    def additems():
+    def additems(self):
          try:
               if request.method not in ['GET', 'POST']:
                 return render_template(config.ERROR_404)
               
               else:
-                
                 if (request.method == 'POST'):
                     #Check data for exceptions
                     error = checkforexceptions.checkdata(request.form.get('product_name'), request.form.get('price'), request.form.get('quantity'), request.form.get('product_image'))
@@ -63,12 +62,10 @@ class CartServices:
                         quantity = helper.safe_int(request.form.get('quantity'))
                         price = helper.safe_int(request.form.get('price'))
                         
-                        cart.add_to_cart(request.form.get('product_name'), price, quantity, request.form.get('product_image'))
+                        cart.add_product(request.form.get('product_name'), price, quantity, request.form.get('product_image'))
 
                         #Return to the cart page
-                        CartServices.check_cart()
-                        
-                
+                    return redirect(url_for('home'))
                 else:
                      return render_template(config.ERROR_404)
          except:
@@ -76,11 +73,17 @@ class CartServices:
             return render_template(config.ERROR_404)
          
 
-    def remove_from_cart():
+    def remove_from_cart(self):
+        
         if request.method == 'POST':
             try:
                 product = request.form.get('product')
                 cart.remove_product(product)
+                return redirect(url_for('cart'))
+            
             except Exception as e:
                 print(f"Error removing product from the cart : {str(e)}")
-                return redirect(url_for('cart'))
+
+        else:
+            return "issues with the request method. This has been logged and reported."
+                
